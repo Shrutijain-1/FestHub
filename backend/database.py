@@ -6,9 +6,15 @@ from backend.core.config import DATABASE_URL
 
 # check_same_thread=False is required for SQLite when used with FastAPI,
 # since FastAPI can handle requests on different threads.
-engine = create_engine(
-    DATABASE_URL, connect_args={"check_same_thread": False}
-)
+
+if DATABASE_URL.startswith("sqlite"):
+    engine = create_engine(
+        DATABASE_URL,
+        connect_args={"check_same_thread": False},
+    )
+else:
+    engine = create_engine(DATABASE_URL)
+
 
 
 @event.listens_for(engine, "connect")
