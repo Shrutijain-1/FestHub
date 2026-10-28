@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap');
+
+:root {
+  --navy: #0F1B3D;
+  --accent: #4F46E5;
+  --accent-dark: #4338CA;
+  --purple: #7C3AED;
+  --bg: #F5F6FA;
+  --muted: #6B7280;
+  --border: #E5E7EB;
+}
+
+.stApp { background: var(--bg); font-family: 'Inter', sans-serif; }
+h1, h2, h3, h4 { font-family: 'Poppins', sans-serif !important; color: var(--navy); }
+
+/* Hide default Streamlit chrome */
+#MainMenu, footer, header[data-testid="stHeader"] { visibility: hidden; }
+.block-container { padding-top: 1.2rem; max-width: 1200px; }
+
+/* ---------- Buttons ---------- */
+.stButton > button, .stFormSubmitButton > button {
+  border-radius: 10px; font-weight: 500; border: 1px solid var(--border);
+  padding: 0.5rem 1rem; transition: all 0.15s ease;
+}
+.stButton > button[kind="primary"], .stFormSubmitButton > button[kind="primary"] {
+  background: var(--accent); border-color: var(--accent); color: #fff;
+}
+.stButton > button[kind="primary"]:hover, .stFormSubmitButton > button[kind="primary"]:hover {
+  background: var(--accent-dark); border-color: var(--accent-dark);
+}
+
+/* ---------- Login / signup form card ---------- */
+[data-testid="stForm"] {
+  background: #fff; border: 1px solid var(--border); border-radius: 16px;
+  padding: 1.6rem; box-shadow: 0 8px 24px rgba(15, 27, 61, 0.08);
+}
+
+/* ---------- Navbar ---------- */
+.st-key-navbar {
+  background: #fff; border-radius: 14px; padding: 0.5rem 1rem;
+  box-shadow: 0 2px 10px rgba(15, 27, 61, 0.06); margin-bottom: 1.5rem;
+}
+.st-key-navbar .stButton > button[kind="secondary"] {
+  background: transparent; border: none; color: var(--navy); font-size: 0.9rem;
+}
+.st-key-navbar .stButton > button[kind="secondary"]:hover { background: #EEF2FF; color: var(--accent); }
+.st-key-navbar .stButton > button[kind="primary"] { font-size: 0.9rem; }
+
+.ef-brand { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--navy); padding-top: 0.3rem; }
+.ef-brand span { color: var(--accent); }
+.ef-tagline { color: var(--muted); font-size: 0.95rem; margin-top: -0.3rem; }
+.ef-auth-brand { text-align: center; margin: 2rem 0 1.2rem; }
+.ef-auth-brand .ef-brand { font-size: 2rem; }
+
+/* ---------- Stat cards ---------- */
+.ef-stat {
+  background: #fff; border-radius: 14px; padding: 1.1rem 1.2rem;
+  border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(15, 27, 61, 0.05);
+  border-left: 4px solid var(--accent);
+}
+.ef-stat .value { font-family: 'Poppins', sans-serif; font-size: 1.9rem; font-weight: 700; color: var(--navy); line-height: 1.1; }
+.ef-stat .label { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+
+/* ---------- Event cards ---------- */
+.ef-event {
+  background: #fff; border-radius: 16px; overflow: hidden; margin-bottom: 0.5rem;
+  border: 1px solid var(--border); box-shadow: 0 4px 14px rgba(15, 27, 61, 0.07);
+}
+.ef-banner {
+  height: 110px; display: flex; align-items: center; justify-content: center;
+  font-size: 2.6rem; position: relative;
+}
+.ef-chip {
+  position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.92);
+  color: var(--navy); font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border-radius: 999px;
+}
+.ef-body { padding: 1rem 1.1rem 1.1rem; }
+.ef-title { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1.02rem; color: var(--navy); margin-bottom: 0.3rem; }
+.ef-college { color: var(--accent); font-size: 0.85rem; font-weight: 500; margin-bottom: 0.5rem; }
+.ef-meta { color: var(--muted); font-size: 0.83rem; margin-bottom: 0.2rem; }
+.ef-foot { display: flex; justify-content: space-between; margin-top: 0.7rem; font-size: 0.82rem; font-weight: 600; }
+.ef-fee { color: var(--navy); }
+.ef-seats { color: #059669; }
+.ef-seats.full { color: #DC2626; }
+
+/* ---------- This Month list ---------- */
+.ef-month-title { font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--navy); margin: 1rem 0 0.5rem; }
+.ef-row {
+  display: flex; align-items: center; gap: 1rem; background: #fff; border: 1px solid var(--border);
+  border-radius: 12px; padding: 0.7rem 1rem; margin-bottom: 0.5rem;
+}
+.ef-date-badge {
+  min-width: 52px; text-align: center; background: #EEF2FF; color: var(--accent);
+  border-radius: 10px; padding: 0.3rem 0; font-weight: 700; line-height: 1.1;
+}
+.ef-date-badge small { display: block; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; }
+.ef-row-title { font-weight: 600; color: var(--navy); font-size: 0.95rem; }
+.ef-row-sub { color: var(--muted); font-size: 0.82rem; }
+.ef-empty { color: var(--muted); background: #fff; border: 1px dashed var(--border); border-radius: 12px; padding: 1rem; }
+/* ---------- Event details page ---------- */
+.ef-hero {
+  height: 200px; border-radius: 18px; position: relative; margin-bottom: 1.2rem;
+  display: flex; align-items: center; justify-content: center; font-size: 5rem;
+  box-shadow: 0 8px 24px rgba(15, 27, 61, 0.12);
+}
+.ef-detail-title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.8rem; color: var(--navy); }
+.ef-info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin: 1.2rem 0; }
+.ef-info { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 0.8rem 1rem; }
+.ef-info .k { color: var(--muted); font-size: 0.78rem; margin-bottom: 0.2rem; }
+.ef-info .v { color: var(--navy); font-weight: 600; font-size: 0.95rem; }
+.ef-section { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem 1.3rem; margin-bottom: 1rem; }
+.ef-section h4 { margin: 0 0 0.5rem; font-size: 1.05rem; }
+.ef-section p { white-space: pre-line; color: #374151; margin: 0; line-height: 1.6; }
+.ef-section ul { margin: 0; padding-left: 1.2rem; color: #374151; line-height: 1.8; }
+.ef-deadline { color: #B45309; background: #FEF3C7; border-radius: 10px; padding: 0.6rem 1rem; font-size: 0.9rem; margin-bottom: 1rem; }
+.ef-deadline.closed { color: #B91C1C; background: #FEE2E2; }
+/* ---------- Organizer: status badges ---------- */
+.ef-badge { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 2px 10px; border-radius: 999px; margin-left: 0.4rem; }
+.ef-badge.published { background: #D1FAE5; color: #047857; }
+.ef-badge.draft { background: #FEF3C7; color: #B45309; }
+/* ---------- Registration status badges ---------- */
+.ef-badge.registered { background: #D1FAE5; color: #047857; }
+.ef-badge.cancelled { background: #FEE2E2; color: #B91C1C; }

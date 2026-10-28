@@ -1,0 +1,27 @@
+venv/
+__pycache__/
+*.pyc
+.env
+database/*.db
+backend/static/uploads/*
+!backend/static/uploads/.gitkeep
+.pytest_cache/# Python environments and caches
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Local databases
+database/*.db
+database/*.sqlite
+database/*.sqlite3
+
+# User-uploaded files
+backend/static/uploads/*
+!backend/static/uploads/.gitkeep
