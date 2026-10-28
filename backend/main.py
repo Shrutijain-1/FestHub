@@ -8,6 +8,8 @@ from fastapi.staticfiles import StaticFiles
 from sqlalchemy.exc import SQLAlchemyError
 
 from backend.core.config import APP_NAME
+from backend.database import Base, engine
+from backend import models
 from backend.routes import ai, auth, colleges, dashboard, events, organizer, registrations
 
 logger = logging.getLogger("eventflow.api")
@@ -20,6 +22,13 @@ app = FastAPI(
     description="REST API for college event discovery and management",
     version="0.1.0",
 )
+
+@app.on_event("startup")
+def initialize_database():
+    Base.metadata.create_all(bind=engine)
+
+    from backend.seed.seed_if_empty import main as seed_if_empty
+    seed_if_empty()
 
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
