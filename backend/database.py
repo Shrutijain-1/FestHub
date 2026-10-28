@@ -13,7 +13,22 @@ if DATABASE_URL.startswith("sqlite"):
         connect_args={"check_same_thread": False},
     )
 else:
-    engine = create_engine(DATABASE_URL)
+    if DATABASE_URL.startswith("sqlite"):
+        engine = create_engine(
+            DATABASE_URL,
+            connect_args={"check_same_thread": False},
+    )
+    else:
+        postgres_url = DATABASE_URL.replace(
+            "postgresql+psycopg://", "postgresql+psycopg2://", 1
+    )
+
+    if postgres_url.startswith("postgresql://"):
+        postgres_url = postgres_url.replace(
+            "postgresql://", "postgresql+psycopg2://", 1
+        )
+
+    engine = create_engine(postgres_url)
 
 
 
