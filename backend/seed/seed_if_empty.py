@@ -11,18 +11,16 @@ def main():
 
     db = SessionLocal()
     try:
-        counts = [
-            db.query(model).count()
-            for model in (College, Event, Registration, User)
-        ]
-
-        if not any(counts):
-            print("Empty database found. Adding demo data...")
-            run_seed()
-        else:
-            print("Database already has data. Skipping demo seed.")
+        models = (College, Event, Registration, User)
+        is_empty = all(db.query(model).count() == 0 for model in models)
     finally:
         db.close()
+
+    if is_empty:
+        print("Empty database found. Adding demo data...")
+        run_seed()
+    else:
+        print("Database already has data. Skipping demo seed.")
 
 
 if __name__ == "__main__":
