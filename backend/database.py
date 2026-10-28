@@ -17,12 +17,15 @@ else:
 
 
 
+
 @event.listens_for(engine, "connect")
 def _enable_foreign_keys(dbapi_connection, connection_record):
-    """SQLite ignores foreign keys unless this is switched on for every connection."""
-    cursor = dbapi_connection.cursor()
-    cursor.execute("PRAGMA foreign_keys=ON")
-    cursor.close()
+    if engine.dialect.name == "sqlite":
+        cursor = dbapi_connection.cursor()
+        cursor.execute("PRAGMA foreign_keys=ON")
+        cursor.close()
+
+
 
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
