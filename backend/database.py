@@ -28,7 +28,12 @@ else:
             "postgresql://", "postgresql+psycopg2://", 1
         )
 
-    engine = create_engine(postgres_url)
+    engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,   # NEW: test the connection first; reconnect if Neon closed it
+    pool_recycle=300,     # NEW: replace connections older than 5 minutes
+    # keep any other arguments you already have here
+)
 
 
 
