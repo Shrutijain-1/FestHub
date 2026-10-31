@@ -50,7 +50,7 @@ def register_user(name: str, email: str, password: str, role: str, college: str,
                 "name": name, "email": email, "password": password,
                 "role": role, "college": college, "phone": phone,
             },
-            timeout=5,
+            timeout=60,
         )
         if response.status_code == 201:
             return True, response.json()
@@ -65,7 +65,7 @@ def login_user(email: str, password: str):
         response = requests.post(
             f"{API_BASE_URL}/auth/login",
             json={"email": email, "password": password},
-            timeout=5,
+            timeout=60,
         )
         if response.status_code == 200:
             return True, response.json()
@@ -79,7 +79,7 @@ def api_get(path: str, params: dict | None = None):
     headers = {"Authorization": f"Bearer {get_token()}"}
     try:
         response = requests.get(
-            f"{API_BASE_URL}{path}", params=params, headers=headers, timeout=8
+            f"{API_BASE_URL}{path}", params=params, headers=headers, timeout=60
         )
     except requests.RequestException:
         return False, "Cannot reach the server. Please try again."
@@ -93,7 +93,7 @@ def api_get(path: str, params: dict | None = None):
 
 
 def api_send(method: str, path: str, json: dict | None = None,
-             files: dict | None = None, timeout: int = 15):
+             files: dict | None = None, timeout: int = 60):
     """Authenticated POST / PUT / PATCH / DELETE. Returns (success, data_or_error_message)."""
     headers = {"Authorization": f"Bearer {get_token()}"}
     try:
