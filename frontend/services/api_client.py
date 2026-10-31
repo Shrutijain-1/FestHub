@@ -9,10 +9,20 @@ from services.session import clear_session, get_token
 
 load_dotenv()
 
-API_BASE_URL = st.secrets.get(
-    "API_BASE_URL",
-    os.getenv("API_BASE_URL", "https://festhub-dpvi.onrender.com/api")
-)
+def _get_api_base_url() -> str:
+    """Read the API address from Streamlit secrets, then the environment, then a default."""
+    default = "https://festhub-dpvi.onrender.com/api"
+    try:
+        value = st.secrets["API_BASE_URL"]
+    except Exception:  # no secrets file, or no such key
+        value = os.getenv("API_BASE_URL", default)
+    value = str(value).strip().rstrip("/")   # remove spaces and a trailing slash
+    if not value.endswith("/api"):           # adds /api if it is missing
+        value += "/api"
+    return value
+
+
+API_BASE_URL = _get_api_base_url()
 SERVER_URL = API_BASE_URL.removesuffix("/api")
 
 

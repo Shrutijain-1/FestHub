@@ -18,6 +18,8 @@ from views.signup import render_signup
 
 st.set_page_config(page_title="FestHub", page_icon="🎯", layout="wide")
 load_css()
+from services.api_client import API_BASE_URL
+st.caption(f"API: {API_BASE_URL}")
 
 st.session_state.setdefault("view", "login")
 st.session_state.setdefault("page", "Home")
